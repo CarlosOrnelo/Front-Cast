@@ -1,0 +1,15 @@
+
+@mixin breakpoint($point) {
+
+    @if $point == minimum-max {
+        @media (max-width: 48rem) { // 768px
+            @content;
+        }
+    }
+
+    @if $point == medium-max {
+        @media (max-width: 74.9375rem) { // 1200px
+            @content;
+        }
+    }
+}

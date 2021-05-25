@@ -1,0 +1,238 @@
+$component-name: 'l-footer';
+
+.#{$component-name} {
+    background-color: #172121;
+    color: white;
+    grid-area: footer;
+    height: 10vh;
+    position: fixed;
+    width: 100%;
+
+    &__player-controls {
+
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        @include breakpoint(minimum-max) {
+            display: grid;
+            grid-template-columns: 1fr 40%;
+            grid-template-rows: 75% 25%;
+            grid-template-areas: "left right"
+                                 "center center";
+        };
+        
+        &__left {
+
+            display: flex;
+            align-items: center;
+            padding: 1em;
+            @include breakpoint(minimum-max) {
+                grid-area: left;
+                padding: 0
+            };
+
+            .current-thumbnail {
+                img {
+                    width: $image-footer-max-size;
+                    height: $image-footer-max-size;
+                    border-radius: 3px;
+                    padding: 5px;
+                    @include breakpoint(medium-max) {
+                        width: $image-footer-medium-size;
+                        height: $image-footer-medium-size;
+                        border-radius: 7px;
+                    };
+                    @include breakpoint(minimum-max) {
+                        width: $image-footer-minimum-size;
+                        height: $image-footer-minimum-size;
+                        border-radius: 7px;
+                    };
+                };
+                
+            }
+            
+            .play-button {
+
+                button {
+                    border: 0;
+                    background: transparent;
+                }
+
+                img {
+                    width: $icon-play-footer-max-size;
+                    height: $icon-play-footer-max-size;
+                    @include breakpoint(minimum-max) {
+                        width: $icon-play-footer-minimum-size;
+                        height: $icon-play-footer-minimum-size;
+                    };
+                }
+            };
+
+            .rewind-button {
+
+                button {
+                    border: 0;
+                    background: transparent;
+                };
+                img {
+                    width: 30px;
+                    height: 30px;
+                    transform: rotate(180deg);
+                    @include breakpoint(minimum-max) {
+                        width: $icon-time-footer-minimum-size;
+                        height: $icon-time-footer-minimum-size;
+                    };
+                }
+            };
+
+            .forward-button {
+
+                button {
+                    border: 0;
+                    background: transparent;
+                };
+                img {
+                    width: 30px;
+                    height: 30px;
+                    @include breakpoint(minimum-max) {
+                        width: $icon-time-footer-minimum-size;
+                        height: $icon-time-footer-minimum-size;
+                    };
+                }
+            };
+        }
+
+        &__center {
+
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            padding: 1em;
+            @include breakpoint(minimum-max) {
+                grid-area: center;
+                padding: 0;
+            };
+
+            .episode-title {
+                height: 50%;
+                cursor: pointer;
+                @include breakpoint(minimum-max) {
+                    display: none
+                };
+            }
+
+            .progress-episode {
+                display: flex;
+                font-size: 14px;
+                width: 100%;
+                height: 50%;
+            }
+
+            .current-progress {
+                position: absolute;
+                bottom: 10px;
+                font-size: 14px;
+                @include breakpoint(minimum-max) {
+                    display: none
+                };
+            };
+
+            .remaining-time {
+                position: absolute;
+                bottom: 10px;
+                right: 220px;
+                font-size: 14px;
+                @include breakpoint(minimum-max) {
+                    display: none
+                };
+            }
+
+            .progress-bar {
+                width: 100%;
+                input {
+                    cursor: pointer;
+                    width: 100%;
+                    margin: 0;
+                    opacity: 0.7;
+                    -webkit-transition: 0.2s;
+                    transition: opacity 0.2s;
+                    height: 2px;
+                    -webkit-appearance: none;
+                    outline: none;
+                    border-radius: 2px;
+                    &:hover {
+                        opacity: 1;
+                    }
+                    &::-webkit-slider-thumb {
+                        -webkit-appearance: none;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                        background: white;
+                    };
+                };
+            };
+        };
+
+        &__right {
+
+            display: flex;
+            align-items: center;
+            padding: 1em;
+            @include breakpoint(minimum-max) {
+                grid-area: right;
+                padding: 0
+            };
+
+            .volume-icon {
+                button {
+                    border: 0;
+                    background: transparent;
+                };
+                img {
+                    width: 30px;
+                    height: 30px;
+                    @include breakpoint(minimum-max) {
+                        display: none
+                    };
+                }
+            }
+            
+            .volume-bar {
+                width: 100%;
+                display: flex;
+                input {
+                    cursor: pointer;
+                    margin: 0;
+                    height: 2px;
+                    opacity: 0.7;
+                    -webkit-transition: 0.2s;
+                    transition: opacity 0.2s;
+                    -webkit-appearance: none;
+                    outline: none;
+                    border-radius: 2px;
+                    &:hover {
+                        opacity: 1;
+                        &::-webkit-slider-thumb{
+                            width: 10px;
+                            height: 10px
+                        }
+                    };
+                    &::-webkit-slider-thumb {
+                        -webkit-appearance: none;
+                        width: 0;
+                        height: 0;
+                        border-radius: 50%;
+                        background: white;
+                    }
+                }
+            };
+        }
+    }
+};
+
+.l-footer-hide {
+    display: none;
+}

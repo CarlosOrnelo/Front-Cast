@@ -1,0 +1,316 @@
+$component-name: 'l-main';
+
+.#{$component-name} {
+    background-color: $global-main-color;
+    grid-area: main;
+    height: 100vh;
+    font-family: 'Lato', sans-serif;
+
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-template-areas: 
+        "sidebar .";
+        
+    @include breakpoint(medium-max) {
+        display: grid;
+        grid-template-columns: 79px 1fr;
+    };
+
+    @include breakpoint(minimum-max) {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    &__sidebar-container {
+        background-color: $global-sidebar-color;
+        grid-area: sidebar;
+        border-right-style: solid;
+        border-color: $global-sidebar-border-color;
+        border-width: thin;
+        display: flex;
+        flex-direction: column;
+        font-size: $global-max-font;
+        height: 100vh;
+        overflow: hidden;
+
+
+        @include breakpoint(minimum-max) {
+            height: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            border-top: thin solid gray;
+        }
+
+        &__item {
+
+            @include breakpoint(medium-max) {
+                p {
+                    display: none;
+                };
+                .sidebar-icon {
+                    padding: $sidebar-logo-margin;
+                }
+            }
+
+            a {
+                text-decoration: none;
+                color: $global-sidebar-text-color-selected;
+                display: flex;
+                align-items: center;
+
+                @include breakpoint(minimum-max) {
+                    height: 50px
+                };
+
+                &:hover .sidebar-marker- {
+                    transition: $sidebar-transition-icon-hover;
+                    display: block;
+                    @include breakpoint(medium-max) {
+                        display: none
+                    };
+                }
+                img {
+                    width: $sidebar_items-max-width / 10;
+                    height: $sidebar_items-max-height;
+                    margin-left: $global-min-margin / 2;
+                    margin-right: $global-min-margin / 2;
+                };
+                .sidebar-marker- {
+                    display: none;
+                    justify-content: center;
+                }
+                .sidebar-marker-true {
+                    @include breakpoint(medium-max) {
+                        display: none
+                    };
+                }
+            }
+        };
+
+        .logo-sidebar {
+            margin-top: $sidebar-logo-margin;
+            margin-left: $sidebar-logo-margin;
+            padding-bottom: $sidebar-logo-margin;
+
+            @include breakpoint(minimum-max) {
+                display: none
+            }
+
+            img {
+                width: $sidebar-logo-max-size;
+                height: $sidebar-logo-max-size;
+
+                @include breakpoint(medium-max) {
+                    width: $sidebar-logo-min-size;
+                    height: $sidebar-logo-min-size;
+                }
+            }
+        }
+    };
+
+    &__content {
+
+        display: block;
+        @include breakpoint(minimum-max) {
+            height: 100%;
+        }
+        
+        &-container {
+
+            display: flex;
+            flex-direction: column;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 24px;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 40px;
+            max-width: $global-max-width;
+
+            @include breakpoint(minimum-max) {
+                padding: 0;
+            }
+
+            &__header {
+                height: $header-max-height;
+                @include breakpoint(minimum-max) {
+                    h1 {
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+            };
+
+            &__divider {
+
+                .ordenate {
+
+                    display: flex;
+                    justify-content: flex-end;
+
+                    button {
+                        background: transparent;
+                        border: 0;
+                        padding: 0;
+                    };
+                    img {
+                        width: 25px;
+                        height: 25px;
+                    };
+                };
+
+                .ordenate-objects {
+                    display: flex;
+                    flex-direction: column;
+                    background: white;
+                    border: 1px solid;
+                    border-radius: 5px;
+                    border-color: gray;
+                    width: 20vh;
+                    height: 50px;
+                    margin-top: 38px;
+                    cursor: pointer;
+                    position: fixed;
+                    z-index: 1;
+                    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+                    button {
+                        padding: 5px 0px 5px 0px;
+                        &:hover {
+                            background: gray;
+                        }
+                    }
+                }
+
+                @include breakpoint(minimum-max) {
+                    display: none;
+                }
+            }
+  
+            &__body { // ul
+
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start; //Fazer a divLateral ficar do tamanho máximos dos itens
+                list-style: none;
+                padding: 0;
+                
+                .divLateral {
+                    
+                    display: flex;
+                    align-items: flex-start;
+                    margin-bottom: 1em;
+                    width: 100%;
+                    
+                    @include breakpoint(minimum-max) {
+                        margin-bottom: 0
+                    }
+                    
+                    li {
+                        list-style-type: none;
+                        width: 100%;
+                        margin-right: 1em;
+                        max-width: $image-main-size;
+                        max-height: $image-main-size;
+                        @include breakpoint(minimum-max) {
+                            margin-right: 0;
+                        };
+                        
+                        &:last-child {
+                            margin-right: 0;
+                        };
+
+                        button {
+                            border: 0;
+                            background: transparent;
+                            padding: 0;
+                        }
+                        
+                        .image-wrapper {
+                            display: inline-block;
+                            position: relative;
+                            
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 3px;
+                                cursor: pointer;
+                                &:hover {
+                                    transform: scale(1.1, 1.1);
+                                    transition: 0.3s;
+                                }
+                                @include breakpoint(minimum-max) {
+                                    border-radius: 0;
+                                    &:hover {
+                                        transform: none;
+                                        transition: none
+                                    }
+                                }
+                            }
+                        };
+                    }
+                }
+            }
+
+        }
+    };
+
+    &__episode-details {
+
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1001;
+
+        &__active {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1002;
+            width: 630px;
+            height: 600px;
+            margin-top: 10vh;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: white;
+            border-radius: 6px;
+            overflow: auto;
+    
+            &__top {
+                display: flex;
+                padding: 3% 2%;
+                img {
+                    border-radius: 10px
+                };
+                .episode-titles {
+                    margin: 24px
+                }   
+            };
+    
+            &__medium {
+                padding: 2%
+            };
+    
+            &__bottom {
+                padding: 2%
+            }
+        };
+    };
+
+    .about-details {
+        margin-left: 3%;
+        margin-right: 3%;
+
+        @include breakpoint(minimum-max) {
+            margin-left: 1%;
+            margin-right: 1%;
+            height: 100vh
+        };
+
+        &__top {
+            text-align: center
+        }
+    }
+    
+};
