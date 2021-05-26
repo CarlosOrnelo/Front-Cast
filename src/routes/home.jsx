@@ -1,4 +1,4 @@
-import React, { Component, useContext } from 'react';
+import React, { Component } from 'react';
 import SideBar from '../components/sideBar';
 import Content from '../components/content';
 import Footer from '../components/footer';
@@ -48,7 +48,7 @@ class Home extends Component {
 
         episodes = episodes.sort(function(x, y) {
             let a = x.title_original.toLowerCase(), b = y.title_original.toLowerCase();
-            return a == b ? 0 : a > b ? 1 : -1;
+            return a === b ? 0 : a > b ? 1 : -1;
         });
         this.setState({ episodes });
         this.setState({ ordenateButton })
